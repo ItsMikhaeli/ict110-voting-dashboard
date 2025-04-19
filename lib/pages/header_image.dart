@@ -47,7 +47,7 @@ class Gradient extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.white.withOpacity(0.0), Colors.white],
+          colors: [Colors.white.withValues(alpha: 0.0), Colors.white],
           stops: [0.0, 1.0],
         ),
       ),
