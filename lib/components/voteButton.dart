@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voting_app/color-theme.dart';
+import 'package:voting_app/color_theme.dart';
 
 class VoteButton extends StatefulWidget {
   const VoteButton({super.key});

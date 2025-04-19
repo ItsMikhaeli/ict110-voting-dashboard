@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/pages/dashboard/dashboard.dart';
-import 'package:voting_app/pages/voting-page/voting-page.dart';
+import 'package:voting_app/pages/dashboard.dart';
+import 'package:voting_app/pages/votingPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: DashboardScreen(),
-      home: VotingApp(),
+      home: DashboardScreen(),
+      routes: {
+        '/vote': (context) => const VotingApp(),
+      },
     );
   }
 }

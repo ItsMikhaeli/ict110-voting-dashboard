@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voting_app/pages/voting-page/main-components/custom-card.dart';
-import 'package:voting_app/pages/voting-page/main-components/vote-cta.dart';
+import 'package:voting_app/components/candidateCard.dart';
+import 'package:voting_app/components/voteButton.dart';
 
 class VotingApp extends StatelessWidget {
   const VotingApp({super.key});

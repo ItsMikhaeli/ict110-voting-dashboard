@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/pages/header_image.dart';
+import 'package:voting_app/components/header_image.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
