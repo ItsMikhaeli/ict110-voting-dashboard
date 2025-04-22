@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/pages/dashboard/dashboard.dart';
-import 'package:voting_app/pages/voting-page.dart';
+import 'package:voting_app/pages/dashboard.dart';
+import 'package:voting_app/pages/vote_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voting_app/components/candidateCard.dart';
-import 'package:voting_app/components/voteButton.dart';
+import 'package:voting_app/components/candidate_card.dart';
+import 'package:voting_app/components/vote_cta.dart';
 
 class VotingApp extends StatelessWidget {
   const VotingApp({super.key});
@@ -42,7 +42,7 @@ class NavBar extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withValues(alpha: 0.5),
             blurRadius: 3,
             spreadRadius: 0,
             offset: const Offset(0, 1),
