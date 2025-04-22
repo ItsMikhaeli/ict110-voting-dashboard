@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voting_app/components/candidate_card.dart';
-import 'package:voting_app/components/vote_cta.dart';
+import 'package:voting_app/components/vote_button.dart';
 
 class VotingApp extends StatelessWidget {
   const VotingApp({super.key});
@@ -12,12 +12,11 @@ class VotingApp extends StatelessWidget {
       children: [
         Header(),
         Expanded(child: VotingPage()),
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Padding(
+        Padding(
             padding: const EdgeInsets.all(16.0),
-            child: VoteButton(),
-          ),
+            child: VoteButton(onPressed: () => {
+             Navigator.pop<bool>(context, true), // Placeholder for vote action; TO DO: Change to actual logic 
+          }),
         ),
       ],
     );
