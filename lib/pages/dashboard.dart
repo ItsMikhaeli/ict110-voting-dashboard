@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onTap: () async {
               bool? response = await Navigator.push(context, 
                 MaterialPageRoute(builder: (context) {
-                  return const VotingApp();
+                  return VotingApp(voteStatus: userHasVoted);
                 }));
               
               if (response != null) {

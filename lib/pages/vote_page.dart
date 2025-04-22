@@ -3,8 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voting_app/components/candidate_card.dart';
 import 'package:voting_app/components/vote_button.dart';
 
-class VotingApp extends StatelessWidget {
-  const VotingApp({super.key});
+class VotingApp extends StatefulWidget {
+  final bool? voteStatus;
+  const VotingApp({super.key, this.voteStatus});
+
+  @override
+  State<VotingApp> createState() => _VotingAppState();
+}
+
+class _VotingAppState extends State<VotingApp> {
 
   @override
   Widget build(BuildContext context) {
