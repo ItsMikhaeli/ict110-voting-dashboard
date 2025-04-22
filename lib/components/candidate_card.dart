@@ -7,8 +7,15 @@ import 'package:voting_app/color_theme.dart';
 class CustomCard extends StatefulWidget {
   final String name;
   final String affiliation;
-
-  const CustomCard({super.key, required this.name, required this.affiliation});
+  final Image candidateImage;
+  final GestureTapCallback onTap;
+  const CustomCard({
+    super.key,
+    required this.name,
+    required this.affiliation,
+    required this.candidateImage,
+    required this.onTap,
+  });
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -16,7 +23,6 @@ class CustomCard extends StatefulWidget {
 
 class _CustomCardState extends State<CustomCard> {
   bool _isSelected = false;
-  bool _isDisabled = false;
 
   void _toggleSelected() {
     setState(() {
@@ -32,23 +38,22 @@ class _CustomCardState extends State<CustomCard> {
             : Palette.cardDefaultBackground;
     Color accentColor =
         _isSelected ? Palette.cardSelectedAccent : Palette.cardDefaultAccent;
-    double opacity = _isDisabled ? 0.5 : 1.0;
 
     return GestureDetector(
-      onTap: _toggleSelected,
+      onTap: widget.onTap,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Container(
-          color: backgroundColor.withValues(alpha: opacity),
+          color: backgroundColor,
           child: Row(
             spacing: 12.0,
             children: [
-              CandidateImage(),
+              CandidateImage(candidateImage: widget.candidateImage),
               CandidateDetails(
                 name: widget.name,
                 affiliation: widget.affiliation,
               ),
-              CardDesign(color: accentColor.withValues(alpha: opacity)),
+              CardDesign(color: accentColor),
             ],
           ),
         ),
@@ -58,14 +63,15 @@ class _CustomCardState extends State<CustomCard> {
 }
 
 class CandidateImage extends StatelessWidget {
-  const CandidateImage({super.key});
+  final Image candidateImage;
+  const CandidateImage({super.key, required this.candidateImage});
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 75.0,
-      height: 75.0,
-      child: Placeholder(color: Colors.grey),
+    return SizedBox(
+      width: 125.0,
+      height: 125.0,
+      child: candidateImage,
     );
   }
 }
@@ -100,7 +106,7 @@ class _CandidateDetailsState extends State<CandidateDetails> {
               decoration: TextDecoration.none,
             ),
           ),
-          const SizedBox(height: 8.0),
+          // const SizedBox(height: 8.0),
           Text(
             widget.affiliation,
             style: GoogleFonts.poppins(
@@ -134,12 +140,12 @@ class _CardDesignState extends State<CardDesign> {
         alignment: Alignment.center,
         children: [
           Transform.translate(
-            offset: const Offset(24.0, 0.0),
+            offset: const Offset(42.0, 0.0),
             child: Transform.rotate(
               angle: pi / 4,
               child: SizedBox(
-                width: 75.0,
-                height: 75.0,
+                width: 100.0,
+                height: 100.0,
                 child: ColoredBox(color: widget.color),
               ),
             ),

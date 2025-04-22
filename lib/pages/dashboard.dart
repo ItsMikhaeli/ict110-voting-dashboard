@@ -24,13 +24,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
     ),
     Candidate(
       name: "GEGER JOHN PAUL GABAYERON",
-      position: "Vice President",
+      position: "President",
       party: "Party B",
       image: Image.asset("assets/images/GABAYERON.jpg"),
     ),
     Candidate(
       name: "JOSEPH MIKHAELI JALANDONI",
-      position: "Secretary",
+      position: "President",
       party: "Party C",
       image: Image.asset("assets/images/JALANDONI.jpg"),
     ),
@@ -56,9 +56,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           HeaderImage(),
           GestureDetector(
             onTap: () async {
+              print(userHasVoted);
               bool? response = await Navigator.push(context, 
                 MaterialPageRoute(builder: (context) {
-                  return VotingApp(voteStatus: userHasVoted);
+                  return VotingApp(voteStatus: userHasVoted, candidateList: candidates);
                 }));
               
               if (response != null) {
