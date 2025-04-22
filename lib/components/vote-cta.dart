@@ -2,12 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voting_app/color_theme.dart';
 
-class VoteCTA extends StatelessWidget {
+class VoteCTA extends StatefulWidget {
+  final bool? voteStatus;
+
+  const VoteCTA({super.key, this.voteStatus});
+
+  @override
+  State<VoteCTA> createState() => _VoteCTAState();
+}
+
+class _VoteCTAState extends State<VoteCTA> {
   final double height = 100.0;
-  const VoteCTA({super.key});
+  String titleText = "";
+  String subtitleText = "";
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
+    if (widget.voteStatus!) {
+      color = Palette.buttonAlternativeBackground;
+      titleText = "Already voted!";
+      subtitleText = "Verify your vote";
+    } else {
+      color = Palette.buttonDefaultBackground;
+      titleText = "Cast your vote now!";
+      subtitleText = "Voting is now open";
+    }
+
     return Transform.translate(
       offset: Offset(0.0, -height / 2),
       child: Padding(
@@ -17,14 +38,14 @@ class VoteCTA extends StatelessWidget {
           child: Container(
             height: height,
             width: double.maxFinite,
-            color: Palette.buttonDefaultBackground,
+            color: color,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  VotingInfo(),
+                  VotingInfo(title: titleText, subtitle: subtitleText),
                   Icon(Icons.arrow_forward, color: Colors.white, size: 48.0),
                 ],
               ),
@@ -37,7 +58,9 @@ class VoteCTA extends StatelessWidget {
 }
 
 class VotingInfo extends StatelessWidget {
-  const VotingInfo({super.key});
+  final String title;
+  final String subtitle;
+  const VotingInfo({super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +71,7 @@ class VotingInfo extends StatelessWidget {
 
         children: [
           Text(
-            "Cast your vote now!",
+            title,
             style: GoogleFonts.poppins(
               fontSize: 24.0,
               fontWeight: FontWeight.w600,
@@ -61,7 +84,7 @@ class VotingInfo extends StatelessWidget {
             children: [
               LiveButton(),
               Text(
-                "Voting is now open",
+                subtitle,
                 style: GoogleFonts.poppins(
                   fontSize: 12.0,
                   fontWeight: FontWeight.normal,

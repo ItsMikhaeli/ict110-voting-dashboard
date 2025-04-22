@@ -11,4 +11,5 @@ class Palette {
   static const Color cardText = Color(0xff000000);
 
   static const Color buttonDefaultBackground = Color(0xff0084FF);
+  static const Color buttonAlternativeBackground = Color(0xffAFAFAF);
 }

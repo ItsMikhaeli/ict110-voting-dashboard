@@ -8,52 +8,18 @@ class VotingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Image.asset(
-          "assets/images/brand-logo.png",
-          height: 50,
-          width: 120,
-        ),
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
-          child: Divider(color: Colors.grey, height: 1.0),
-        ),
-      ),
-      body: VotingPage(),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: VoteButton(),
-      ),
-    );
-  }
-}
-
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.5),
-            blurRadius: 3,
-            spreadRadius: 0,
-            offset: const Offset(0, 1),
+    return Column(
+      children: [
+        Header(),
+        Expanded(child: VotingPage()),
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: VoteButton(),
           ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Image.asset("assets/images/brand-logo.png", height: 50, width: 120),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -80,14 +46,21 @@ class TextSection extends StatelessWidget {
       children: [
         Text(
           "It's time to cast your vote!",
-          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.none,
+          ),
         ),
         const SizedBox(height: 8.0),
         Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.",
           style: GoogleFonts.poppins(
+            color: Colors.black,
             fontSize: 12,
             fontWeight: FontWeight.normal,
+            decoration: TextDecoration.none,
           ),
         ),
       ],
@@ -100,14 +73,48 @@ class CardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        spacing: 16.0,
-        children: [
-          CustomCard(name: "GABAYERON, GJP", affiliation: "Independent"),
-          CustomCard(name: "RONDAEL, VO", affiliation: "Independent"),
-          CustomCard(name: "JALANDONI, JM", affiliation: "Independent"),
-        ],
+    return Column(
+      spacing: 16.0,
+      children: [
+        CustomCard(name: "GABAYERON, GJP", affiliation: "Independent"),
+        CustomCard(name: "RONDAEL, VO", affiliation: "Independent"),
+        CustomCard(name: "JALANDONI, JM", affiliation: "Independent"),
+      ],
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 75,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(75),
+              blurRadius: 3,
+              spreadRadius: 0,
+              offset: const Offset(0, 1),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/images/brand-logo.png",
+                height: 50,
+                width: 120,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

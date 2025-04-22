@@ -3,7 +3,8 @@ import 'package:voting_app/components/header_image.dart';
 import 'package:voting_app/components/vote-cta.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  final bool userHasVoted;
+  const DashboardScreen({super.key, this.userHasVoted = false});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
           HeaderImage(),
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, "/vote"),
-            child: VoteCTA(),
+            child: VoteCTA(voteStatus: userHasVoted),
           ),
         ],
       ),
