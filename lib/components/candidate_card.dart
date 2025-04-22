@@ -8,13 +8,13 @@ class CustomCard extends StatefulWidget {
   final String name;
   final String affiliation;
   final Image candidateImage;
-  final GestureTapCallback onTap;
+  // final GestureTapCallback onTap;
   const CustomCard({
     super.key,
     required this.name,
     required this.affiliation,
     required this.candidateImage,
-    required this.onTap,
+    // required this.onTap,
   });
 
   @override
@@ -40,7 +40,8 @@ class _CustomCardState extends State<CustomCard> {
         _isSelected ? Palette.cardSelectedAccent : Palette.cardDefaultAccent;
 
     return GestureDetector(
-      onTap: widget.onTap,
+      // onTap: widget.onTap,
+      onTap: _toggleSelected,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Container(

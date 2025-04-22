@@ -92,11 +92,11 @@ class CardSection extends StatelessWidget {
           candidateImage: candidate.image,
           name: candidate.name,
           affiliation: candidate.party,
-          onTap: () => {
-            if (!isDisabled) {
-              // Implement on tap option logic here
-            }
-          },
+          // onTap: () => {
+          //   if (!isDisabled) {
+          //     // Implement on tap option logic here
+          //   }
+          // },
         ));
       }).toList(),
     );

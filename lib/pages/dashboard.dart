@@ -56,7 +56,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           HeaderImage(),
           GestureDetector(
             onTap: () async {
-              print(userHasVoted);
+              // print(userHasVoted);
               bool? response = await Navigator.push(context, 
                 MaterialPageRoute(builder: (context) {
                   return VotingApp(voteStatus: userHasVoted, candidateList: candidates);
