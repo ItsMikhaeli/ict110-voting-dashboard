@@ -4,14 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voting_app/color_theme.dart';
 
-enum CardState {
-  defaultState,
-  selectedState,
-  hoveredState,
-  disabledState,
-  disabledSelectedState,
-}
-
 class CustomCard extends StatefulWidget {
   final String name;
   final String affiliation;
@@ -24,6 +16,7 @@ class CustomCard extends StatefulWidget {
 
 class _CustomCardState extends State<CustomCard> {
   bool _isSelected = false;
+  bool _isDisabled = false;
 
   void _toggleSelected() {
     setState(() {
@@ -33,20 +26,20 @@ class _CustomCardState extends State<CustomCard> {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = Palette.cardDefaultBackground;
-    Color accentColor = Palette.cardDefaultAccent;
-
-    if (_isSelected) {
-      backgroundColor = Palette.cardSelectedBackground;
-      accentColor = Palette.cardSelectedAccent;
-    }
+    Color backgroundColor =
+        _isSelected
+            ? Palette.cardSelectedBackground
+            : Palette.cardDefaultBackground;
+    Color accentColor =
+        _isSelected ? Palette.cardSelectedAccent : Palette.cardDefaultAccent;
+    double opacity = _isDisabled ? 0.5 : 1.0;
 
     return GestureDetector(
       onTap: _toggleSelected,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Container(
-          color: backgroundColor,
+          color: backgroundColor.withValues(alpha: opacity),
           child: Row(
             spacing: 12.0,
             children: [
@@ -55,7 +48,7 @@ class _CustomCardState extends State<CustomCard> {
                 name: widget.name,
                 affiliation: widget.affiliation,
               ),
-              CardDesign(color: accentColor),
+              CardDesign(color: accentColor.withValues(alpha: opacity)),
             ],
           ),
         ),
