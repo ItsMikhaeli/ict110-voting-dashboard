@@ -12,7 +12,6 @@ class VoteCTA extends StatefulWidget {
 }
 
 class _VoteCTAState extends State<VoteCTA> {
-  final double height = 100.0;
   String titleText = "";
   String subtitleText = "";
   Color? color;
@@ -30,13 +29,12 @@ class _VoteCTAState extends State<VoteCTA> {
     }
 
     return Transform.translate(
-      offset: Offset(0.0, -height / 2),
+      offset: const Offset(0.0, -44.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
           child: Container(
-            height: height,
             width: double.maxFinite,
             color: color,
             child: Padding(
