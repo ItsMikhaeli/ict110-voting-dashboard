@@ -46,6 +46,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       party: "Party C",
       image: Image.asset("assets/images/SIMOY.jpg"),
     ),
+    Candidate(
+      name: "KAREN CARBON",
+      position: "President",
+      party: "Party D",
+      image: Image.asset("assets/images/CARBON.jpg"),
+    ),
   ];
 
   @override
@@ -57,11 +63,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
           GestureDetector(
             onTap: () async {
               // print(userHasVoted);
-              bool? response = await Navigator.push(context, 
-                MaterialPageRoute(builder: (context) {
-                  return VotingApp(voteStatus: userHasVoted, candidateList: candidates);
-                }));
-              
+              bool? response = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return VotingApp(
+                      voteStatus: userHasVoted,
+                      candidateList: candidates,
+                    );
+                  },
+                ),
+              );
+
               if (response != null) {
                 setState(() {
                   userHasVoted = response;
@@ -70,7 +83,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             },
             child: VoteCTA(voteStatus: userHasVoted),
           ),
-          CandidateGrid(candidates: candidates)
+          CandidateGrid(candidates: candidates),
         ],
       ),
     );

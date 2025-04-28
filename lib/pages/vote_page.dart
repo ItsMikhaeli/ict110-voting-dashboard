@@ -7,7 +7,11 @@ import 'package:voting_app/components/vote_button.dart';
 class VotingApp extends StatefulWidget {
   final bool voteStatus;
   final List<Candidate> candidateList;
-  const VotingApp({super.key, required this.voteStatus, required this.candidateList});
+  const VotingApp({
+    super.key,
+    required this.voteStatus,
+    required this.candidateList,
+  });
 
   @override
   State<VotingApp> createState() => _VotingAppState();
@@ -19,12 +23,18 @@ class _VotingAppState extends State<VotingApp> {
     return Column(
       children: [
         Header(),
-        Expanded(child: VotingPage(voteStatus: widget.voteStatus, candidateList: widget.candidateList)),
+        Expanded(
+          child: VotingPage(
+            voteStatus: widget.voteStatus,
+            candidateList: widget.candidateList,
+          ),
+        ),
         Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: VoteButton(voteStatus: widget.voteStatus, onPressed: () => {
-              Navigator.pop<bool>(context, true)
-          }),
+          padding: const EdgeInsets.all(16.0),
+          child: VoteButton(
+            voteStatus: widget.voteStatus,
+            onPressed: () => {Navigator.pop<bool>(context, true)},
+          ),
         ),
       ],
     );
@@ -34,13 +44,23 @@ class _VotingAppState extends State<VotingApp> {
 class VotingPage extends StatelessWidget {
   final bool voteStatus;
   final List<Candidate> candidateList;
-  const VotingPage({super.key, required this.voteStatus, required this.candidateList});
+  const VotingPage({
+    super.key,
+    required this.voteStatus,
+    required this.candidateList,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
-      child: Column(spacing: 24.0, children: [TextSection(voteStatus: voteStatus), CardSection(candidates: candidateList, isDisabled: voteStatus)]),
+      child: Column(
+        spacing: 24.0,
+        children: [
+          TextSection(voteStatus: voteStatus),
+          CardSection(candidates: candidateList, isDisabled: voteStatus),
+        ],
+      ),
     );
   }
 }
@@ -55,7 +75,7 @@ class TextSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          voteStatus ? "Verify your vote!" : "It's time to cast your vote!" ,
+          voteStatus ? "Verify your vote!" : "It's time to cast your vote!",
           style: GoogleFonts.poppins(
             color: Colors.black,
             fontSize: 20,
@@ -81,24 +101,37 @@ class TextSection extends StatelessWidget {
 class CardSection extends StatelessWidget {
   final List<Candidate> candidates;
   final bool isDisabled;
-  const CardSection({super.key, required this.candidates, required this.isDisabled});
+  const CardSection({
+    super.key,
+    required this.candidates,
+    required this.isDisabled,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 16.0,
-      children: candidates.where((candidate) => candidate.position == "President").map((candidate) {
-        return Opacity(opacity: isDisabled ? 0.5 : 1, child: CustomCard(
-          candidateImage: candidate.image,
-          name: candidate.name,
-          affiliation: candidate.party,
-          // onTap: () => {
-          //   if (!isDisabled) {
-          //     // Implement on tap option logic here
-          //   }
-          // },
-        ));
-      }).toList(),
+      children:
+          candidates
+              .where((candidate) => candidate.position == "President")
+              .map((candidate) {
+                return Opacity(
+                  opacity: isDisabled ? 0.5 : 1,
+                  child: CustomCard(
+                    candidateImage: candidate.image,
+                    name: candidate.name,
+                    affiliation: candidate.party,
+                    // onTap:
+                    //     () => {
+                    //       if (!isDisabled)
+                    //         {
+                    //           // Implement on tap option logic here
+                    //         },
+                    //     },
+                  ),
+                );
+              })
+              .toList(),
     );
   }
 }

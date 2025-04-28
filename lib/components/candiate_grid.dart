@@ -4,10 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CandidateGrid extends StatelessWidget {
   final List<Candidate> candidates;
 
-  const CandidateGrid({
-    super.key,
-    required this.candidates,
-  });
+  const CandidateGrid({super.key, required this.candidates});
 
   @override
   Widget build(BuildContext context) {
@@ -19,37 +16,34 @@ class CandidateGrid extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Meet your cadidates",
+              "Meet your candidates",
               style: GoogleFonts.poppins(
                 color: Colors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.none,
-              )
+              ),
             ),
             Text(
-              "Get to know the nominee by viewing its profile",
+              "Get to know the nominees by viewing their profile",
               style: GoogleFonts.poppins(
                 color: Colors.black,
                 fontSize: 12,
                 fontWeight: FontWeight.normal,
                 decoration: TextDecoration.none,
-              )
+              ),
             ),
             const SizedBox(height: 16.0),
             CandidateGridList(candidates: candidates),
           ],
         ),
-      )
+      ),
     );
   }
 }
 
 class CandidateGridList extends StatelessWidget {
-  const CandidateGridList({
-    super.key,
-    required this.candidates,
-  });
+  const CandidateGridList({super.key, required this.candidates});
 
   final List<Candidate> candidates;
 
@@ -90,7 +84,7 @@ class CandidateGridList extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
-                    Text("${candidate.position} - ${candidate.party}")
+                    Text("${candidate.position} - ${candidate.party}"),
                   ],
                 ),
               ],
